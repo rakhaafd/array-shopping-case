@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Shopping List - KIDI #6</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <h1>Array Shopping List 🛒</h1>
+    <div class="filter-container">
+        <select id="filter">
+            <option value="all">Seluruh Daftar Belanja</option>
+            <option value="discount">Barang Diskon</option>
+            <option value="expensive">Barang Mahal (> Rp100,000)</option>
+            <option value="final">Daftar Belanja Setelah Pengurangan</option>
+        </select>
+    </div>
+    <div class="table-container">
+        <table id="shoppingTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nama</th>
+                    <th>Harga</th>
+                    <th>Diskon</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+    <div class="code-section">
+        <h2>Submission Code (output, bisa dilihat di console)</h2>
+        <div class="code-container">
+            <button class="copy-button" onclick="copyCode()">
+                <i class="fa fa-copy"></i>
+                <i class="fa fa-check"></i>
+                <span>Copy Code</span>
+            </button>
+            <pre><code class="language-javascript">
+// case array 
+// kamu memiliki daftar belanja >15 barang dan kamu ingin mengetahui apa yang sudah kamu beli maka:
+// 1. tampilkan seluruh data barang
+// 2. tampilkan beberapa barang yang sedang terdapat diskon
+// 3. Hapus beberapa barang yang terlalu mahal
+// 4. Tampilkan data akhir belanjaan
+
+
+let daftarBelanja = [
+  { id: 1, nama: "Laptop Asus Vivobook", harga: 7500000, diskon: false },
+  { id: 2, nama: "Mouse Logitech", harga: 250000, diskon: true },
+  { id: 3, nama: "Keyboard Mechanical", harga: 500000, diskon: false },
+  { id: 4, nama: "Kursi Gaming", harga: 1200000, diskon: true },
+  { id: 5, nama: "Meja Belajar", harga: 900000, diskon: false },
+  { id: 6, nama: "Pulpen Gel", harga: 5000, diskon: true },
+  { id: 7, nama: "Buku Catatan A5", harga: 15000, diskon: false },
+  { id: 8, nama: "Printer Epson", harga: 1300000, diskon: false },
+  { id: 9, nama: "Tinta Printer", harga: 85000, diskon: true },
+  { id: 10, nama: "Headset Gaming", harga: 450000, diskon: false },
+  { id: 11, nama: "Ransel Sekolah", harga: 175000, diskon: false },
+  { id: 12, nama: "Botol Minum", harga: 30000, diskon: true },
+  { id: 13, nama: "Kalkulator Casio", harga: 225000, diskon: false },
+  { id: 14, nama: "Papan Tulis", harga: 250000, diskon: false },
+  { id: 15, nama: "Lampu Meja", harga: 100000, diskon: true },
+  { id: 16, nama: "Flashdisk 32GB", harga: 80000, diskon: false },
+  { id: 17, nama: "Tas Laptop", harga: 200000, diskon: true }
+];
+
+console.log("=== Seluruh Daftar Belanja ===");
+daftarBelanja.forEach((item) => {
+  console.log(`${item.nama} - Rp${item.harga} ${item.diskon ? "(Diskon!)" : ""}`);
+});
+
+let barangDiskon = daftarBelanja.filter(item => item.diskon)
+console.log("\n=== Barang Diskon ===");
+barangDiskon.forEach(item => {
+  console.log(`${item.nama} - Rp${item.harga} - ${item.diskon ? "(Diskon!)" : ""}`)
+})
+
+barangMahal = daftarBelanja.filter(item => item.harga > 100000)
+console.log(`\n=== Hapus Barang Mahal ( > Rp 100.000 ) ===`)
+barangMahal.forEach(item => {
+  console.log(`${item.nama} - Rp${item.harga}`)
+})
+
+console.log("\n=== Daftar Akhir Belanja ===")
+daftarBelanja.forEach(item => {
+  console.log(`${item.nama} - Rp${item.harga}`)
+})
+
+
+// ============ output ============
+
+=== Seluruh Daftar Belanja ===
+Laptop Asus Vivobook - Rp7500000 
+Mouse Logitech - Rp250000 (Diskon!)
+Keyboard Mechanical - Rp500000
+Kursi Gaming - Rp1200000 (Diskon!)
+Meja Belajar - Rp900000
+Pulpen Gel - Rp5000 (Diskon!)
+Buku Catatan A5 - Rp15000
+Printer Epson - Rp1300000
+Tinta Printer - Rp85000 (Diskon!)
+Headset Gaming - Rp450000
+Ransel Sekolah - Rp175000
+Botol Minum - Rp30000 (Diskon!)
+Kalkulator Casio - Rp225000
+Papan Tulis - Rp250000
+Lampu Meja - Rp100000 (Diskon!)
+Flashdisk 32GB - Rp80000
+Tas Laptop - Rp200000 (Diskon!)
+
+=== Barang Diskon ===
+Mouse Logitech - Rp250000 - (Diskon!)
+Kursi Gaming - Rp1200000 - (Diskon!)
+Pulpen Gel - Rp5000 - (Diskon!)
+Tinta Printer - Rp85000 - (Diskon!)
+Botol Minum - Rp30000 - (Diskon!)
+Lampu Meja - Rp100000 - (Diskon!)
+Tas Laptop - Rp200000 - (Diskon!)
+
+=== Hapus Barang Mahal ( > Rp 100.000 ) ===
+Laptop Asus Vivobook - Rp7500000
+Mouse Logitech - Rp250000
+Keyboard Mechanical - Rp500000
+Kursi Gaming - Rp1200000
+Meja Belajar - Rp900000
+Printer Epson - Rp1300000
+Headset Gaming - Rp450000
+Ransel Sekolah - Rp175000
+Kalkulator Casio - Rp225000
+Papan Tulis - Rp250000
+Tas Laptop - Rp200000
+
+=== Daftar Akhir Belanja ===
+Laptop Asus Vivobook - Rp7500000
+Mouse Logitech - Rp250000
+Keyboard Mechanical - Rp500000
+Kursi Gaming - Rp1200000
+Meja Belajar - Rp900000
+Pulpen Gel - Rp5000
+Buku Catatan A5 - Rp15000
+Printer Epson - Rp1300000
+Tinta Printer - Rp85000
+Headset Gaming - Rp450000
+Ransel Sekolah - Rp175000
+Botol Minum - Rp30000
+Kalkulator Casio - Rp225000
+Papan Tulis - Rp250000
+Lampu Meja - Rp100000
+Flashdisk 32GB - Rp80000
+Tas Laptop - Rp200000
+</code></pre>
+        </div>
+    </div>
+    <footer>Created by <strong>Rakha Fausta 🃏</strong></footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
